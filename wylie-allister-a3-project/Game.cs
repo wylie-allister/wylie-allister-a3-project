@@ -12,9 +12,9 @@ namespace Game10003
     public class Game
     {
         // Place your variables here:
-        Brick brick;
         Ball ball;
-
+        int brickCount = 19;
+        Brick[] bricks;
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -23,9 +23,15 @@ namespace Game10003
         {
             Window.SetTitle("Weatherbuster");
             Window.SetSize(600, 600);
+
             Vector2 centre = Window.Size / 2;
-            brick = new Brick();
-            ball = new Ball(); 
+            ball = new Ball();
+             bricks = new Brick[19];
+
+            for (int i = 0; i < bricks.Length; i++)
+            {
+               bricks[i] = new Brick();
+            }
         }
 
         /// <summary>
@@ -34,14 +40,14 @@ namespace Game10003
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
+
             //draw test ball
             ball.UpdatePosition();
             ball.Render();
             ball.TouchingWalls();
 
-            //draw bricks in row
-            brick.DrawBrickPosition();
-
+            bricks[1].RenderBrick(46, 200);
         }
+
     }
 }
