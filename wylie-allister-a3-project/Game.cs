@@ -1,5 +1,6 @@
 ﻿// Include code libraries you need below (use the namespace).
 using System;
+using System.IO;
 using System.Numerics;
 
 // The namespace your code is in.
@@ -11,6 +12,8 @@ namespace Game10003
     public class Game
     {
         // Place your variables here:
+        Brick brick;
+        Ball ball;
 
 
         /// <summary>
@@ -19,7 +22,10 @@ namespace Game10003
         public void Setup()
         {
             Window.SetTitle("Weatherbuster");
-            Window.SetSize(600,600);
+            Window.SetSize(600, 600);
+            Vector2 centre = Window.Size / 2;
+            brick = new Brick();
+            ball = new Ball(); 
         }
 
         /// <summary>
@@ -28,6 +34,14 @@ namespace Game10003
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
+            //draw test ball
+            ball.UpdatePosition();
+            ball.Render();
+            ball.TouchingWalls();
+
+            //draw bricks in row
+            brick.DrawBrickPosition();
+
         }
     }
 }
