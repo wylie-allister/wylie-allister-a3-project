@@ -46,8 +46,25 @@ namespace Game10003
             ball.Render();
             ball.TouchingWalls();
 
-            bricks[1].RenderBrick(46, 200);
+            BrickRenderer();
         }
 
+        void BrickRenderer()
+        {
+            //Renders cloud bricks
+            //also kind of ugly
+            bricks[12].RenderBrick(85, 144);
+            bricks[11].RenderBrick(72, 160);
+            bricks[10].RenderBrick(59, 176);
+            bricks[1].RenderBrick(46, 192);
+            bricks[2].RenderBrick(46, 208);
+            bricks[3].RenderBrick(46, 224);            
+            bricks[4].RenderBrick(46, 240);
+            bricks[5].RenderBrick(46, 256);
+            bricks[6].RenderBrick(46, 272);
+            bricks[7].RenderBrick(59, 288);
+            bricks[8].RenderBrick(72, 304);
+            bricks[9].RenderBrick(85, 320);
+        }
     }
 }

@@ -5,6 +5,8 @@ namespace Game10003
 {
     public class Ball
     {
+        Brick brickCollision;
+        
         //ALL OF THIS WILL BE REPLACED, CURRENTLY USING TO TEST COLLISION, DON'T MIND IT
         //----------------------------------------------------------------------------------------------
         Vector2 velocity;
@@ -15,7 +17,7 @@ namespace Game10003
         {
             //set up ball
             velocity = Random.Direction() * 100;
-            radius = 10;
+            radius = 7;
             color = Random.Color();
             position = Random.Vector2(radius, Window.Width - radius, radius, Window.Height - radius);
         }
@@ -47,6 +49,11 @@ namespace Game10003
             {
                 velocity.X = -velocity.X;
             }
+        }
+
+        public void BallCollision()
+        {
+Vector2 point;
         }
         //------------------------------------------------------------------------------------------------
     }
