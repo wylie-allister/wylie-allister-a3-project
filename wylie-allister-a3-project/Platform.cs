@@ -9,4 +9,6 @@ public class Platform
     Vector2 size;
     float speed;
     Color color;
+
+
 }
