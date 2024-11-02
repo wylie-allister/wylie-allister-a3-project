@@ -4,67 +4,98 @@ using System.IO;
 using System.Numerics;
 
 // The namespace your code is in.
-namespace Game10003
+namespace Game10003;
+
+/// <summary>
+///     Your game code goes inside this class!
+/// </summary>
+public class Game
 {
+    // Place your variables here:
+    //creates amount of bricks needed
+    Brick[] bricks = new Brick[283];
+    // rowY: Y axis positions, brickRowNumber: Number of bricks in each row, rowX: X axis positions, offsetX: Offsets X axis
+    int[] rowY = [320, 304, 288, 272, 256, 240, 224, 208, 192, 176, 160, 144, 128, 112, 96, 80, 64, 48, 32];
+    int[] brickRowNumber = [16, 17, 18, 19, 13, 12, 10, 9, 7, 6];
+    int[] rowX = [46, 73, 100, 127, 154, 181, 208, 235, 262, 289, 316, 343, 370, 397, 424, 451, 478, 505, 532];
+    int[] offsetX = [39, 26, 15, 79, 93, 120, 134, 161, 175];
+
+
     /// <summary>
-    ///     Your game code goes inside this class!
+    ///     Setup runs once before the game loop begins.
     /// </summary>
-    public class Game
+    public void Setup()
     {
-        // Place your variables here:
-        Ball ball;
-        int brickCount = 19;
-        Brick[] bricks;
-
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
-        public void Setup()
+        Window.SetTitle("Weatherbuster");
+        Window.SetSize(600, 600);
+        for (int i = 0; i < bricks.Length; i++)
         {
-            Window.SetTitle("Weatherbuster");
-            Window.SetSize(600, 600);
+            Brick brick = new Brick();
+            bricks[i] = brick;
 
-            Vector2 centre = Window.Size / 2;
-            ball = new Ball();
-             bricks = new Brick[19];
-
-            for (int i = 0; i < bricks.Length; i++)
-            {
-               bricks[i] = new Brick();
-            }
         }
+    }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
-        public void Update()
+    /// <summary>
+    ///     Update runs every frame.
+    /// </summary>
+    public void Update()
+    {
+        Window.ClearBackground(Color.OffWhite);
+        DrawCloud();
+    }
+
+    public void DrawCloud()
+    {
+        //draws bricks into cloud shaped pattern
+        for (int i = 0; i < brickRowNumber[0]; i++)
         {
-            Window.ClearBackground(Color.OffWhite);
-
-            //draw test ball
-            ball.UpdatePosition();
-            ball.Render();
-            ball.TouchingWalls();
-
-            BrickRenderer();
+            bricks[i].DrawBrick(rowX[i] + offsetX[0], rowY[0]);
+            bricks[i].DrawBrick(rowX[i] + offsetX[0], rowY[11]);
         }
-
-        void BrickRenderer()
+        for (int i = 0; i < brickRowNumber[1]; i++)
         {
-            //Renders cloud bricks
-            //also kind of ugly
-            bricks[12].RenderBrick(85, 144);
-            bricks[11].RenderBrick(72, 160);
-            bricks[10].RenderBrick(59, 176);
-            bricks[1].RenderBrick(46, 192);
-            bricks[2].RenderBrick(46, 208);
-            bricks[3].RenderBrick(46, 224);            
-            bricks[4].RenderBrick(46, 240);
-            bricks[5].RenderBrick(46, 256);
-            bricks[6].RenderBrick(46, 272);
-            bricks[7].RenderBrick(59, 288);
-            bricks[8].RenderBrick(72, 304);
-            bricks[9].RenderBrick(85, 320);
+            bricks[i].DrawBrick(rowX[i] + offsetX[1], rowY[1]);
+            bricks[i].DrawBrick(rowX[i] + offsetX[1], rowY[10]);
+        }
+        for (int i = 0; i < brickRowNumber[2]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[2], rowY[2]);
+            bricks[i].DrawBrick(rowX[i] + offsetX[2], rowY[9]);
+        }
+        for (int i = 0; i < brickRowNumber[3]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i], rowY[3]);
+            bricks[i].DrawBrick(rowX[i], rowY[4]);
+            bricks[i].DrawBrick(rowX[i], rowY[5]);
+            bricks[i].DrawBrick(rowX[i], rowY[6]);
+            bricks[i].DrawBrick(rowX[i], rowY[7]);
+            bricks[i].DrawBrick(rowX[i], rowY[8]);
+        }
+        for (int i = 0; i < brickRowNumber[4]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[3], rowY[12]);
+        }
+        for (int i = 0; i < brickRowNumber[5]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[4], rowY[13]);
+        }
+        for (int i = 0; i < brickRowNumber[6]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[5], rowY[14]);
+            bricks[i].DrawBrick(rowX[i] + offsetX[5], rowY[15]);
+        }
+        for (int i = 0; i < brickRowNumber[7]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[6], rowY[16]);
+        }
+        for (int i = 0; i < brickRowNumber[8]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[7], rowY[17]);
+        }
+        for (int i = 0; i < brickRowNumber[9]; i++)
+        {
+            bricks[i].DrawBrick(rowX[i] + offsetX[8], rowY[18]);
         }
     }
 }
