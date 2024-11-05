@@ -24,10 +24,12 @@ public class Ball
 
     public void UpdatePosition()
     {
+        //ball moves
     ballPosition += velocity * Time.DeltaTime;
     }
     public void DrawBall()
     {
+        //draws ball
         Draw.FillColor = color;
         //Draw.Circle(circlePosition, radius);
         Draw.Rectangle(ballPosition, ballSize);
@@ -39,6 +41,7 @@ public class Ball
         //  bool isTouchingBot = ballPosition.Y >= Window.Height - radius;
         // bool isTouchingLeft = ballPosition.X <= 0 + radius;
         // bool isTouchingRight = ballPosition.X >= Window.Width - radius;
+        //Wall collision
         float ballLeftEdge = ballPosition.X;
         float ballRightEdge = ballPosition.X + ballSize.X;
         float ballTopEdge = ballPosition.Y;
@@ -93,8 +96,7 @@ public class Ball
         if (isWithinBrick == true)
         {
             Console.WriteLine("ping");
-           --hp;
-            return true;
+            return isWithinBrick;
         }
         else
         {

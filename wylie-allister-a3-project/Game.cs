@@ -29,6 +29,7 @@ public class Game
     /// </summary>
     public void Setup()
     {
+        //sets title, size, ball position, and generates bricks
         Window.SetTitle("Weatherbuster");
         Window.SetSize(600, 600);
         for (int i = 0; i < bricks.Length; i++)
@@ -48,14 +49,16 @@ public class Game
     public void Update()
     {
         Window.ClearBackground(Color.OffWhite);
-
+        //draws cloud shape to screen
             DrawCloud();
 
+        //draws ball and adds wall collision
        ball.UpdatePosition();
         ball.DrawBall();
         ball.TouchingWalls();
 
-        for (int i = 0; i < 1; i++)
+        //should disable bricks, not currently working??
+        for (int i = 0; i < 283; i++)
         {
            // foreach (Brick brick in bricks)
            // {
@@ -63,12 +66,12 @@ public class Game
            // }
             //ball.BrickCollision(bricks[i], ball.circlePosition);
             bool doesBallCollide = ball.BrickCollision(bricks[i]);
-            if (Input.IsKeyboardKeyPressed(KeyboardInput.Space))
+            if (doesBallCollide)
             {
                 // ball.BrickCollision(bricks[i], ball.circlePosition);
                 Console.WriteLine("pong");
                 --brickCount;
-                this.bricks[i].isActive = false;
+                bricks[i].isActive = false;
             }
             else
             {
@@ -85,16 +88,19 @@ public class Game
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[0], rowY[0]);
                 bricks[i].DrawBrick(rowX[i] + offsetX[0], rowY[11]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[1]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[1], rowY[1]);
                 bricks[i].DrawBrick(rowX[i] + offsetX[1], rowY[10]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[2]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[2], rowY[2]);
                 bricks[i].DrawBrick(rowX[i] + offsetX[2], rowY[9]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[3]; i++)
             {
@@ -104,31 +110,38 @@ public class Game
                 bricks[i].DrawBrick(rowX[i], rowY[6]);
                 bricks[i].DrawBrick(rowX[i], rowY[7]);
                 bricks[i].DrawBrick(rowX[i], rowY[8]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[4]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[3], rowY[12]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[5]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[4], rowY[13]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[6]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[5], rowY[14]);
                 bricks[i].DrawBrick(rowX[i] + offsetX[5], rowY[15]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[7]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[6], rowY[16]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[8]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[7], rowY[17]);
+            ball.BrickCollision(bricks[i]);
             }
             for (int i = 0; i < brickRowNumber[9]; i++)
             {
                 bricks[i].DrawBrick(rowX[i] + offsetX[8], rowY[18]);
+            ball.BrickCollision(bricks[i]);
             }
         }
     }

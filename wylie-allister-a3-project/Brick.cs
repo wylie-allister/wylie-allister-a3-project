@@ -17,6 +17,7 @@ public class Brick
     }
     public void DrawBrick(int x, int y)
     {
+        //Draws brick if active
         if (isActive == true)
         {
             //draws brick
