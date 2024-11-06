@@ -96,6 +96,8 @@ public class Ball
         if (isWithinBrick == true)
         {
             Console.WriteLine("ping");
+            velocity.X = -velocity.X;
+            velocity.Y = -velocity.Y;
             return isWithinBrick;
         }
         else
