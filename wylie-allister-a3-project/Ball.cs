@@ -6,18 +6,15 @@ namespace Game10003;
 
 public class Ball
 {
-    Vector2 velocity;
-    //Vector2 point;
+    public Vector2 velocity;
     public Vector2 ballPosition;
-    Vector2 ballSize;
-    //float radius;
+    public Vector2 ballSize;
     Color color;
     public int hp = 3;
 
     public Ball()
     {
         color = Color.Red;
-       // radius = 7;
         velocity = Random.Direction() * 100;
         ballSize = new Vector2(7, 7);
     }
@@ -25,22 +22,17 @@ public class Ball
     public void UpdatePosition()
     {
         //ball moves
-    ballPosition += velocity * Time.DeltaTime;
+        ballPosition += velocity * Time.DeltaTime;
     }
     public void DrawBall()
     {
         //draws ball
         Draw.FillColor = color;
-        //Draw.Circle(circlePosition, radius);
         Draw.Rectangle(ballPosition, ballSize);
     }
 
     public bool TouchingWalls()
     {
-        // bool isTouchingTop = ballPosition.Y <= 0 + radius;
-        //  bool isTouchingBot = ballPosition.Y >= Window.Height - radius;
-        // bool isTouchingLeft = ballPosition.X <= 0 + radius;
-        // bool isTouchingRight = ballPosition.X >= Window.Width - radius;
         //Wall collision
         float ballLeftEdge = ballPosition.X;
         float ballRightEdge = ballPosition.X + ballSize.X;
@@ -68,13 +60,13 @@ public class Ball
         }
 
         return false;
-       // if (isTouchingBot)
-      //  {
-            //kill ball here
-       // }
+        // if (isTouchingBot)
+        //  {
+        //kill ball here
+        // }
     }
-        public bool BrickCollision(Brick brick)
-        {
+    public bool BrickCollision(Brick brick)
+    {
 
         float leftEdge = brick.position.X;
         float rightEdge = brick.position.X + brick.size.X;
@@ -102,8 +94,7 @@ public class Ball
         }
         else
         {
-            return false; 
+            return false;
         }
-        }
-    
+    }
 }

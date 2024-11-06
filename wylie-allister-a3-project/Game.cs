@@ -45,60 +45,58 @@ public class Game
             for (int i = 0; i < brickRowNumber[0]; i++)
             {
                 bricks[i].BrickPos(brickPos[i][0] + offsetX[0], brickPos[0][1]);
-               // bricks[i + 16].BrickPos(brickPos[i][0] + offsetX[0], brickPos[11][1]);
+                bricks[i + 16].BrickPos(brickPos[i][0] + offsetX[0], brickPos[11][1]);
             }
             for (int i = 0; i < brickRowNumber[1]; i++)
             {
-               // bricks[i].BrickPos(brickPos[i][0] + offsetX[1], brickPos[1][1]);
-              //  bricks[i].BrickPos(brickPos[i][0] + offsetX[1], brickPos[10][1]);
+                bricks[i + 33].BrickPos(brickPos[i][0] + offsetX[1], brickPos[1][1]);
+                bricks[i + 50].BrickPos(brickPos[i][0] + offsetX[1], brickPos[10][1]);
             }
             for (int i = 0; i < brickRowNumber[2]; i++)
             {
-             //   bricks[i + 68].BrickPos(brickPos[i][0] + offsetX[2], brickPos[2][1]);
-            //    bricks[i + 86].BrickPos(brickPos[i][0] + offsetX[2], brickPos[9][1]);
+                bricks[i + 68].BrickPos(brickPos[i][0] + offsetX[2], brickPos[2][1]);
+                bricks[i + 86].BrickPos(brickPos[i][0] + offsetX[2], brickPos[9][1]);
             }
             for (int i = 0; i < brickRowNumber[3]; i++)
             {
-              //  bricks[i + 105].BrickPos(brickPos[i][0], brickPos[3][1]);
-              //  bricks[i + 124].BrickPos(brickPos[i][0], brickPos[4][1]);
-              //  bricks[i + 143].BrickPos(brickPos[i][0], brickPos[5][1]);
-              //  bricks[i + 162].BrickPos(brickPos[i][0], brickPos[6][1]);
-              //  bricks[i + 181].BrickPos(brickPos[i][0], brickPos[7][1]);
-             //   bricks[i + 200].BrickPos(brickPos[i][0], brickPos[8][1]);
+                bricks[i + 105].BrickPos(brickPos[i][0], brickPos[3][1]);
+                bricks[i + 124].BrickPos(brickPos[i][0], brickPos[4][1]);
+                bricks[i + 143].BrickPos(brickPos[i][0], brickPos[5][1]);
+                bricks[i + 162].BrickPos(brickPos[i][0], brickPos[6][1]);
+                bricks[i + 181].BrickPos(brickPos[i][0], brickPos[7][1]);
+                bricks[i + 200].BrickPos(brickPos[i][0], brickPos[8][1]);
             }
             for (int i = 0; i < brickRowNumber[4]; i++)
             {
-               // bricks[i + 219].BrickPos(brickPos[i][0] + offsetX[3], brickPos[12][1]);
+                bricks[i + 219].BrickPos(brickPos[i][0] + offsetX[3], brickPos[12][1]);
             }
             for (int i = 0; i < brickRowNumber[5]; i++)
             {
-               // bricks[i + 233].BrickPos(brickPos[i][0] + offsetX[4], brickPos[13][1]);
+                bricks[i + 233].BrickPos(brickPos[i][0] + offsetX[4], brickPos[13][1]);
             }
             for (int i = 0; i < brickRowNumber[6]; i++)
             {
-              //  bricks[i + 245].BrickPos(brickPos[i][0] + offsetX[5], brickPos[14][1]);
-             //   bricks[i + 255].BrickPos(brickPos[i][0] + offsetX[5], brickPos[15][1]);
+                bricks[i + 245].BrickPos(brickPos[i][0] + offsetX[5], brickPos[14][1]);
+                bricks[i + 255].BrickPos(brickPos[i][0] + offsetX[5], brickPos[15][1]);
             }
             for (int i = 0; i < brickRowNumber[7]; i++)
             {
-              //  bricks[i + 266].BrickPos(brickPos[i][0] + offsetX[6], brickPos[16][1]);
+                bricks[i + 266].BrickPos(brickPos[i][0] + offsetX[6], brickPos[16][1]);
             }
             for (int i = 0; i < brickRowNumber[8]; i++)
             {
-             //   bricks[i + 273].BrickPos(brickPos[i][0] + offsetX[7], brickPos[17][1]);
+                bricks[i + 275].BrickPos(brickPos[i][0] + offsetX[7], brickPos[17][1]);
             }
             for (int i = 0; i < brickRowNumber[9]; i++)
             {
-                //   bricks[i + 282].BrickPos(brickPos[i][0] + offsetX[8], brickPos[18][1]);
+              //  bricks[i + 282].BrickPos(brickPos[i][0] + offsetX[8], brickPos[18][1]);
             }
         }
-
         ball.ballPosition.X = Window.Width / 2;
         ball.ballPosition.Y = Window.Height - 100;
         platform.platPosition.X = Window.Width / 2;
         platform.platPosition.Y = Window.Height - 50;
         platform.speed = 400;
-
     }
 
     /// <summary>
@@ -107,15 +105,13 @@ public class Game
     public void Update()
     {
         Window.ClearBackground(Color.OffWhite);
-        //draws cloud shape to screen
-
         platform.DrawPlatform();
         platform.MovePlatform();
+        platform.Collision(ball);
         //draws ball and adds wall collision
         ball.UpdatePosition();
         ball.DrawBall();
         ball.TouchingWalls();
-
         //should disable bricks, not currently working??
         for (int i = 0; i < bricks.Length; i++)
         {
@@ -126,13 +122,11 @@ public class Game
             bool doesBallCollide = ball.BrickCollision(bricks[i]);
             if (doesBallCollide == true)
             {
-                // ball.BrickCollision(bricks[i], ball.circlePosition);
                 Console.WriteLine("pong");
                 --brickCount;
                 bricks[i].isActive = false;
             }
         }
-
     }
 }
 
