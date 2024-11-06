@@ -13,6 +13,7 @@ public class Game
 {
     // Place your variables here:
     Ball ball = new Ball();
+    Platform platform = new Platform();
     //creates amount of bricks needed
     Brick[] bricks = new Brick[283];
     int brickCount = 283;
@@ -94,6 +95,9 @@ public class Game
 
         ball.ballPosition.X = Window.Width / 2;
         ball.ballPosition.Y = Window.Height - 100;
+        platform.platPosition.X = Window.Width / 2;
+        platform.platPosition.Y = Window.Height - 50;
+        platform.speed = 400;
 
     }
 
@@ -105,7 +109,8 @@ public class Game
         Window.ClearBackground(Color.OffWhite);
         //draws cloud shape to screen
 
-
+        platform.DrawPlatform();
+        platform.MovePlatform();
         //draws ball and adds wall collision
         ball.UpdatePosition();
         ball.DrawBall();
