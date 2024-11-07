@@ -15,8 +15,8 @@ public class Game
     Ball ball = new Ball();
     Platform platform = new Platform();
     //creates amount of bricks needed
-    Brick[] bricks = new Brick[283];
-    int brickCount = 283;
+    Brick[] bricks = new Brick[289];
+    int brickCount = 289;
     // rowY: Y axis positions, brickRowNumber: Number of bricks in each row, rowX: X axis positions, offsetX: Offsets X axis
     int[] rowY = [320, 304, 288, 272, 256, 240, 224, 208, 192, 176, 160, 144, 128, 112, 96, 80, 64, 48, 32];
     int[] brickRowNumber = [16, 17, 18, 19, 13, 12, 10, 9, 7, 6];
@@ -89,7 +89,7 @@ public class Game
             }
             for (int i = 0; i < brickRowNumber[9]; i++)
             {
-              //  bricks[i + 282].BrickPos(brickPos[i][0] + offsetX[8], brickPos[18][1]);
+              bricks[i + 282].BrickPos(brickPos[i][0] + offsetX[8], brickPos[18][1]);
             }
         }
         ball.ballPosition.X = Window.Width / 2;
@@ -115,11 +115,12 @@ public class Game
         //should disable bricks, not currently working??
         for (int i = 0; i < bricks.Length; i++)
         {
+            bool doesBallCollide = false;
             if (bricks[i].isActive == true)
             {
                 bricks[i].DrawBrick();
+                doesBallCollide = ball.BrickCollision(bricks[i]);
             }
-            bool doesBallCollide = ball.BrickCollision(bricks[i]);
             if (doesBallCollide == true)
             {
                 Console.WriteLine("pong");
