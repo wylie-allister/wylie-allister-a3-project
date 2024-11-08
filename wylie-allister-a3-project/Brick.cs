@@ -17,7 +17,7 @@ public class Brick
     }
     public void BrickPos(int x, int y)
     {
-        //draws brick
+        //draws brick position
         position = new Vector2(x, y);
     }
     public void DrawBrick()

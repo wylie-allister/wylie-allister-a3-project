@@ -16,15 +16,11 @@ public class Game
     Platform platform = new Platform();
     //creates amount of bricks needed
     Brick[] bricks = new Brick[289];
-    int brickCount = 289;
-    // rowY: Y axis positions, brickRowNumber: Number of bricks in each row, rowX: X axis positions, offsetX: Offsets X axis
-    int[] rowY = [320, 304, 288, 272, 256, 240, 224, 208, 192, 176, 160, 144, 128, 112, 96, 80, 64, 48, 32];
+    int brickCount = 282;
+    // brickRowNumber: Number of bricks in each row, offsetX: Offsets X axis, brickPos: sets x and y of bricks
     int[] brickRowNumber = [16, 17, 18, 19, 13, 12, 10, 9, 7, 6];
-    int[] rowX = [46, 73, 100, 127, 154, 181, 208, 235, 262, 289, 316, 343, 370, 397, 424, 451, 478, 505, 532];
     int[] offsetX = [39, 26, 15, 79, 93, 120, 134, 161, 175];
     int[][] brickPos = [[46, 320], [73, 304], [100, 288], [127, 272], [154, 256], [181, 240], [208, 224], [235, 208], [262, 192], [289, 176], [316, 160], [343, 144], [370, 128], [397, 112], [424, 96], [451, 80], [478, 64], [505, 48], [532, 32]];
-
-
 
     /// <summary>
     ///     Setup runs once before the game loop begins.
@@ -92,6 +88,7 @@ public class Game
               bricks[i + 282].BrickPos(brickPos[i][0] + offsetX[8], brickPos[18][1]);
             }
         }
+        //generates ball and platform position & speed
         ball.ballPosition.X = Window.Width / 2;
         ball.ballPosition.Y = Window.Height - 100;
         platform.platPosition.X = Window.Width / 2;
@@ -105,6 +102,7 @@ public class Game
     public void Update()
     {
         Window.ClearBackground(Color.OffWhite);
+        //Draws platform and lets it move and have collision
         platform.DrawPlatform();
         platform.MovePlatform();
         platform.Collision(ball);
@@ -112,7 +110,7 @@ public class Game
         ball.UpdatePosition();
         ball.DrawBall();
         ball.TouchingWalls();
-        //should disable bricks, not currently working??
+        //Disables bricks upon collision
         for (int i = 0; i < bricks.Length; i++)
         {
             bool doesBallCollide = false;
@@ -123,10 +121,27 @@ public class Game
             }
             if (doesBallCollide == true)
             {
-                Console.WriteLine("pong");
                 --brickCount;
                 bricks[i].isActive = false;
             }
+        }
+        //win screen
+        if (brickCount == 0)
+        {
+            Window.ClearBackground(Color.Black);
+            Draw.FillColor = Color.Black;
+            Draw.Rectangle(0, 0, 600, 600);
+            Text.Color = Color.White;
+            Text.Draw($"You win!", 200, 300);
+        }
+        //lose screen
+        if (ball.hp <= 0)
+        {
+            Window.ClearBackground(Color.Black);
+            Draw.FillColor = Color.Black;
+            Draw.Rectangle(0, 0, 600, 600);
+            Text.Color = Color.Red;
+            Text.Draw($"You lose :(", 200, 300);
         }
     }
 }

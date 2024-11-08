@@ -20,6 +20,7 @@ public class Platform
 
     public void MovePlatform()
     {
+        //keyboard inputs
         if (Input.IsKeyboardKeyDown(KeyboardInput.Left))
         {
             platPosition.X -= speed * Time.DeltaTime;
@@ -28,6 +29,7 @@ public class Platform
         {
             platPosition.X += speed * Time.DeltaTime;
         }
+        //wall collision
         if (platPosition.X < 0)
         {
             platPosition.X = 0;
@@ -40,6 +42,7 @@ public class Platform
 
     public bool Collision(Ball ball)
    {
+        //collision variables
         float ballLeftEdge = ball.ballPosition.X;
         float ballRightEdge = ball.ballPosition.X + ball.ballSize.X;
         float ballTopEdge = ball.ballPosition.Y;
@@ -56,10 +59,9 @@ public class Platform
         bool doesOverlapBot = platBotEdge > ballTopEdge;
 
         bool isWithinPlat = doesOverlapLeft && doesOverlapRight && doesOverlapTop && doesOverlapBot;
-
+        //bounces ball back
         if (isWithinPlat == true)
         {
-            //ball.velocity.X = -ball.velocity.X;
             ball.velocity.Y = -ball.velocity.Y;
             return isWithinPlat;
         }

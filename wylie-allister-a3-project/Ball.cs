@@ -15,7 +15,7 @@ public class Ball
     public Ball()
     {
         color = Color.Red;
-        velocity = Random.Direction() * 100;
+        velocity = Random.Direction() * 200;
         ballSize = new Vector2(7, 7);
     }
 
@@ -44,30 +44,30 @@ public class Ball
         bool topOfWindow = ballTopEdge <= 0;
         bool bottomOfWindow = ballBotEdge >= Window.Height;
 
-        if (topOfWindow || bottomOfWindow)
+        if (topOfWindow)
         {
             velocity.Y = -velocity.Y;
         }
-
         if (leftOfWindow || rightOfWindow)
         {
             velocity.X = -velocity.X;
         }
-
-        if (!topOfWindow || !bottomOfWindow || !leftOfWindow || !rightOfWindow)
+        //resets ball if it hits the bottom
+        if (bottomOfWindow == true)
+        {
+            ballPosition.X = Window.Width / 2;
+            ballPosition.Y = Window.Height - 150;
+            --hp;
+        }
+        if (!topOfWindow || ! bottomOfWindow || !leftOfWindow || !rightOfWindow)
         {
             return true;
         }
-
         return false;
-        // if (isTouchingBot)
-        //  {
-        //kill ball here
-        // }
     }
     public bool BrickCollision(Brick brick)
     {
-
+        //variables for brick collision
         float leftEdge = brick.position.X;
         float rightEdge = brick.position.X + brick.size.X;
         float topEdge = brick.position.Y;
@@ -84,10 +84,9 @@ public class Ball
         bool doesOverlapBot = botEdge > ballTopEdge;
 
         bool isWithinBrick = doesOverlapLeft && doesOverlapRight && doesOverlapTop && doesOverlapBot;
-
+        //bounces brick back
         if (isWithinBrick == true)
         {
-            Console.WriteLine("ping");
             velocity.X = -velocity.X;
             velocity.Y = -velocity.Y;
             return isWithinBrick;
