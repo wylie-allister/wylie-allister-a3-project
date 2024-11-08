@@ -12,6 +12,7 @@ namespace Game10003;
 public class Game
 {
     // Place your variables here:
+    Color skyColor = new Color(0x1d, 0x1c, 0x3a);
     Ball ball = new Ball();
     Platform platform = new Platform();
     //creates amount of bricks needed
@@ -101,7 +102,7 @@ public class Game
     /// </summary>
     public void Update()
     {
-        Window.ClearBackground(Color.OffWhite);
+        Window.ClearBackground(skyColor);
         //Draws platform and lets it move and have collision
         platform.DrawPlatform();
         platform.MovePlatform();
@@ -125,6 +126,9 @@ public class Game
                 bricks[i].isActive = false;
             }
         }
+        //hide incorrectly drawn brick
+        Draw.FillColor = skyColor;
+        Draw.Rectangle(0, 0, 25, 13);
         //win screen
         if (brickCount == 0)
         {

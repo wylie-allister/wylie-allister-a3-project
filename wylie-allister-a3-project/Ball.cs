@@ -9,12 +9,12 @@ public class Ball
     public Vector2 velocity;
     public Vector2 ballPosition;
     public Vector2 ballSize;
-    Color color;
+    Color ballColor;
     public int hp = 3;
 
     public Ball()
     {
-        color = Color.Red;
+        ballColor = new Color(0x80, 0xdf, 0xcf);
         velocity = Random.Direction() * 200;
         ballSize = new Vector2(7, 7);
     }
@@ -27,7 +27,7 @@ public class Ball
     public void DrawBall()
     {
         //draws ball
-        Draw.FillColor = color;
+        Draw.FillColor = ballColor;
         Draw.Rectangle(ballPosition, ballSize);
     }
 

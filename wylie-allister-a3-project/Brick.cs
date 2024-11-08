@@ -7,13 +7,13 @@ public class Brick
 {
     public Vector2 position;
     public Vector2 size;
-    public Color color;
+    public Color cloudColor;
     public bool isActive = true;
 
     public Brick()
     {
         size = new Vector2(22, 11);
-        color = Color.Black;
+        cloudColor = new Color(0xd5, 0xd6, 0xdb);
     }
     public void BrickPos(int x, int y)
     {
@@ -26,7 +26,7 @@ public class Brick
         if (isActive == true)
         {
             //draws brick
-            Draw.FillColor = Color.Black;
+            Draw.FillColor = cloudColor;
             Draw.LineColor = Color.Clear;
             Draw.Rectangle(position, size);
         }

@@ -8,13 +8,16 @@ public class Platform
     public Vector2 platPosition;
     public Vector2 platSize;
     public float speed;
-    Color color;
-    
+    Color platColor;
+
+    public Platform()
+    {
+        platColor = new Color(0xff, 0xd4, 0x5d);
+    }
     public void DrawPlatform()
     {
-        platSize = new Vector2 (100, 10);
-        color = Color.Blue;
-        Draw.FillColor = color;
+        platSize = new Vector2(100, 10);
+        Draw.FillColor = platColor;
         Draw.Rectangle(platPosition, platSize);
     }
 
@@ -41,7 +44,7 @@ public class Platform
     }
 
     public bool Collision(Ball ball)
-   {
+    {
         //collision variables
         float ballLeftEdge = ball.ballPosition.X;
         float ballRightEdge = ball.ballPosition.X + ball.ballSize.X;
